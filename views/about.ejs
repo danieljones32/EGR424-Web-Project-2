@@ -1,0 +1,43 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="about content">
+    <h2>About Me</h2>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia quibusdam quaerat illo a modi tenetur ut blanditiis, illum quo consectetur recusandae excepturi natus impedit rem, tempora cum fuga quae in.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia quibusdam quaerat illo a modi tenetur ut blanditiis, illum quo consectetur recusandae excepturi natus impedit rem, tempora cum fuga quae in.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia quibusdam quaerat illo a modi tenetur ut blanditiis, illum quo consectetur recusandae excepturi natus impedit rem, tempora cum fuga quae in.</p>
+  </div>
+
+  <div>
+  <div id="myBtn"><a href="">Click to Display 10 People That Inspired Me</a></div>
+  <div id='output'></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready( function () {
+      $("#myBtn a").click( function (e) {
+        const url = "https://jsonplaceholder.typicode.com/users";
+        e.preventDefault();
+        $.ajax({
+          url:url,
+          type:"GET",
+          dataType:"json",
+          success: function (data) {
+            $("#output").append("<br>Users<br>");
+            $.each(data, function (key, value) {
+              console.log(key);
+              console.log(value);
+              $("#output").append(`<br>${value.username} : ${value.email}`);
+            })
+          }
+        })
+      })
+    })
+  </script>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>
